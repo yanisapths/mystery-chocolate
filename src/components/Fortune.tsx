@@ -55,13 +55,15 @@ const Fortune = ({ to }: FortuneProps) => {
 
   return (
     <div className="relative h-screen bg-background overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12">
-      <Image
-        src="/images/lace-tag.png"
-        width={200}
-        height={200}
-        alt="lace"
-        className="absolute -top-24 sm:-top-[95%] w-full object-contain"
+      <div
+        className="absolute z-10 -top-32 h-[400px] w-full bg-size-[auto_400px]"
+        style={{
+          backgroundImage: "url('/images/lace-tag.png')",
+          backgroundRepeat: "repeat-x",
+          backgroundPosition: "top",
+        }}
       />
+
       <Image
         fill
         src="/images/snow-bg.png"
