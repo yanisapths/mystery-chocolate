@@ -1,4 +1,4 @@
-import { Imbue, Fredoka } from "next/font/google";
+import { Imbue, Fredoka, Just_Me_Again_Down_Here } from "next/font/google";
 
 const imbue = Imbue({
   variable: "--font-imbue",
@@ -10,4 +10,10 @@ const fredoka = Fredoka({
   subsets: ["latin"],
 });
 
-export { imbue, fredoka };
+const justMe = Just_Me_Again_Down_Here({
+  variable: "--font-just-me",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+export { imbue, fredoka, justMe };

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getRandomBlessing } from "../data/blessings";
 import { Share2, Download } from "lucide-react";
@@ -53,8 +53,22 @@ const Fortune = ({ to }: FortuneProps) => {
     }
   };
 
+  useEffect(() => {
+    const flipInterval = setInterval(() => {
+      const shouldFlip = Math.random() > 0.3;
+      if (shouldFlip) {
+        setIsFlipped((prev) => !prev);
+      }
+    }, Math.random() * 1000 + 2000);
+
+    return () => clearInterval(flipInterval);
+  }, []);
+
   return (
-    <div className="relative h-screen bg-background overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12">
+    <div
+      id="fortune-card"
+      className="relative h-screen bg-background overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12"
+    >
       <div
         className="absolute z-10 -top-32 h-[400px] w-full bg-size-[auto_400px]"
         style={{
@@ -73,8 +87,7 @@ const Fortune = ({ to }: FortuneProps) => {
 
       <div className="z-50 min-h-[80vh] m-auto flex flex-col items-center justify-center w-full max-w-sm">
         <div
-          id="fortune-card"
-          className="relative w-full aspect-[3/4] cursor-pointer perspective-1000"
+          className="relative w-full cursor-pointer perspective-1000 animate-sway"
           onClick={() => setIsFlipped(!isFlipped)}
         >
           <div
@@ -83,15 +96,17 @@ const Fortune = ({ to }: FortuneProps) => {
             }`}
           >
             <div className="absolute inset-0 backface-hidden">
-              <div className="w-full h-full bg-background flex items-center justify-center p-8">
-                <div
-                  className="relative bg-accent w-64 h-80 flex flex-col items-center justify-center"
-                  style={{
-                    clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                  }}
-                >
+              <div className="w-full h-full flex items-center justify-center py-8">
+                <div className="flex items-center justify-center">
+                  <Image
+                    width={1000}
+                    height={1000}
+                    src="/images/front-card.png"
+                    alt="front-card"
+                    className="z-20 object-cover"
+                  />
                   <h2
-                    className="text-4xl font-bold text-white text-center px-8"
+                    className="absolute z-50 text-6xl sm:text-7xl font-bold text-[#FFB2F2] text-center"
                     style={{ fontFamily: "Caveat, cursive" }}
                   >
                     Merry
@@ -107,19 +122,22 @@ const Fortune = ({ to }: FortuneProps) => {
             </div>
 
             <div className="absolute inset-0 backface-hidden rotate-y-180">
-              <div className="w-full h-full bg-background flex items-center justify-center p-8">
-                <div
-                  className="relative bg-muted w-64 h-80 flex items-center justify-center p-12"
-                  style={{
-                    clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                  }}
-                >
-                  <p
-                    className="text-2xl text-white text-center leading-relaxed"
-                    style={{ fontFamily: "Caveat, cursive" }}
-                  >
-                    {blessing}
-                  </p>
+              <div className="w-full h-full flex items-center justify-center py-8">
+                <div className="flex items-center justify-center">
+                  <Image
+                    width={1000}
+                    height={1000}
+                    src="/images/back-card-1.png"
+                    alt="back-card"
+                    className="z-20 object-cover"
+                  />
+                  <div className="absolute z-50">
+                    <div className="sm:mx-16 mx-8">
+                      <p className="text-4xl sm:text-5xl text-white text-center font-just-me">
+                        {blessing}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

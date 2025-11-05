@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { fredoka, imbue } from "../components/fonts";
+import { fredoka, imbue, justMe } from "../components/fonts";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fredoka.variable} ${imbue.variable} antialiased`}>
+      <body
+        className={`${fredoka.variable} ${imbue.variable} ${justMe.variable} antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
