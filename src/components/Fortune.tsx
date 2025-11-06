@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { getRandomBlessing } from "../data/blessings";
 
@@ -24,7 +24,7 @@ const Fortune = ({ to }: FortuneProps) => {
       className="relative h-screen bg-[#F10203] overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12"
     >
       <div
-        className="absolute z-10 -top-32 h-[400px] w-full bg-size-[auto_400px]"
+        className="absolute z-10 -top-40 h-[400px] w-full bg-size-[auto_400px]"
         style={{
           backgroundImage: "url('/images/lace-tag.png')",
           backgroundRepeat: "repeat-x",

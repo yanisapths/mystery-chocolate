@@ -24,11 +24,11 @@ export function FortuneCard({ blessing }: FortuneCardProps) {
   return (
     <div className="z-50 min-h-[80vh] m-auto flex flex-col items-center justify-center w-full max-w-sm">
       <div
-        className="relative w-full cursor-pointer perspective-1000 animate-sway md:mt-10"
+        className="relative w-full cursor-pointer perspective-1000 animate-sway"
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div
-          className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+          className={`relative w-full mt-20 sm:mt-0 sm:h-full h-[600px] transition-transform duration-700 transform-style-3d will-change-transform ${
             isFlipped ? "rotate-y-180" : ""
           }`}
         >
@@ -70,7 +70,7 @@ export function FortuneCard({ blessing }: FortuneCardProps) {
                 />
 
                 <div className="absolute z-50">
-                  <div className="sm:mx-16 mx-8">
+                  <div className="sm:mx-16 mx-8 max-w-96">
                     <p className="text-4xl sm:text-5xl text-white text-center font-just-me">
                       {blessing}
                     </p>
