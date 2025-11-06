@@ -96,6 +96,17 @@ const ChocolatePicker = ({ to }: ChocolatePickerProps) => {
           </div>
         </div>
       </div>
+
+      <Button
+        onClick={() => {
+          sessionStorage.removeItem("selectedChocolate");
+          to("fortune");
+        }}
+      >
+        <h2 className="hover:scale-105 text-lg mt-12 underline font-imbue font-light text-foreground tracking-widest">
+          Skip
+        </h2>
+      </Button>
     </div>
   );
 };

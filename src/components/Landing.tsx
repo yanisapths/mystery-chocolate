@@ -24,7 +24,6 @@ const Landing = ({ to }: LandingProps) => {
           <br />
           Chocolate
         </h1>
-
         <Button
           onClick={() => {
             sessionStorage.removeItem("selectedChocolate");

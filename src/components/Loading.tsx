@@ -87,7 +87,7 @@ const Loading = ({ to }: LoadingProps) => {
           50% { transform: translateY(-15px); }
         }
         @keyframes shimmer-sparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
+          0%, 100% { opacity: 0.2; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.3); }
         }
         .animate-shimmer-sparkle { animation: shimmer-sparkle 1.5s ease-in-out infinite; }
