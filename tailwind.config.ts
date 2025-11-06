@@ -8,6 +8,14 @@ export default {
     "./components/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        background: "#F10203",
+        foreground: "#ffffff",
+        primary: "#BC0D0D",
+      },
+    },
+  },
   plugins: [animate],
 } satisfies Config;

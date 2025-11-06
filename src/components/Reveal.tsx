@@ -6,6 +6,7 @@ import { type GameState } from "./use-game-state";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import html2canvas from "html2canvas";
+import { toast } from "sonner";
 
 interface RevealProps {
   to: (state: GameState) => void;
@@ -38,38 +39,39 @@ const Reveal = ({ to }: RevealProps) => {
       const shareUrl = `${window.location.origin}/chocolate?data=${encoded}`;
 
       await navigator.clipboard.writeText(shareUrl);
-      alert("Link copied to clipboard!");
+      toast.success("Copied to clipboard!");
     } catch (err) {
       console.error("Error sharing chocolate:", err);
-      alert("Failed to copy chocolate link.");
+      toast.error("Failed to copy chocolate link.");
     }
   };
 
   const handleDownload = async () => {
-    const element = document.getElementById("chocolate");
+    const element = document.getElementById("mystery-chocolate");
     if (!element) return;
 
     try {
       const canvas = await html2canvas(element, {
-        backgroundColor: "#E94836",
+        backgroundColor: "#F10203",
         scale: 2,
       });
 
       const link = document.createElement("a");
-      link.download = "chocolate.png";
+      link.download = "mystery-chocolate.png";
       link.href = canvas.toDataURL();
       link.click();
     } catch (err) {
       console.log("Error downloading:", err);
+      toast.error("Failed to download image.");
     }
   };
 
   return (
     <div
-      id="chocolate"
-      className="relative overflow-hidden h-screen bg-background font-fredoka flex flex-col items-center justify-center py-12"
+      id="mystery-chocolate"
+      className="relative overflow-hidden h-screen bg-[#F10203] font-fredoka flex flex-col items-center justify-center py-12"
     >
-      <div className="absolute top-16 md:-left-[20%] md:top-[6%] min-w-[800px] md:min-w-screen mx-16 rotate-[-21deg]  md:-rotate-10 h-6 bg-white" />
+      <div className="absolute top-16 md:-left-[20%] md:top-[6%] min-w-[800px] md:min-w-screen mx-16 rotate-[-21deg] md:-rotate-10 h-6 bg-white" />
       <div className="absolute top-20 md:top-[8%] min-w-[800px] mx-16 md:min-w-screen rotate-[8deg] md:rotate-1 h-6 bg-[#BC0D0D]" />
       <Image
         src="/images/lace-bow.png"
@@ -84,7 +86,7 @@ const Reveal = ({ to }: RevealProps) => {
             {chocolate.name}
           </h1>
 
-          <div className="space-y-3 text-foreground">
+          <div className="space-y-3 text-white">
             <p className="text-sm">Tastenote: {chocolate.tasteNote}</p>
 
             <p className="text-xl md:text-2xl px-4">{chocolate.personality}</p>

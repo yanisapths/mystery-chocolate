@@ -7,6 +7,7 @@ import Image from "next/image";
 import html2canvas from "html2canvas";
 import { type GameState } from "./use-game-state";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface FortuneProps {
   to: (state: GameState) => void;
@@ -28,7 +29,7 @@ const Fortune = ({ to }: FortuneProps) => {
 
     try {
       await navigator.clipboard.writeText(shareData.url);
-      alert("Link copied to clipboard!");
+      toast.success("Copied to clipboard!");
     } catch (err) {
       console.log("Error sharing:", err);
     }
@@ -50,6 +51,7 @@ const Fortune = ({ to }: FortuneProps) => {
       link.click();
     } catch (err) {
       console.log("Error downloading:", err);
+      toast.error("Failed to download image.");
     }
   };
 
@@ -67,7 +69,7 @@ const Fortune = ({ to }: FortuneProps) => {
   return (
     <div
       id="fortune-card"
-      className="relative h-screen bg-background overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12"
+      className="relative h-screen bg-[#F10203] overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12"
     >
       <div
         className="absolute z-10 -top-32 h-[400px] w-full bg-size-[auto_400px]"
