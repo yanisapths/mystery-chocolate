@@ -1,32 +1,43 @@
 "use client";
 import { FortuneCard } from "@/src/components/FortuneCard";
 import { Button } from "@/src/components/ui/button";
-import { getRandomBlessing } from "@/src/data/blessings";
+
 import { Sparkle } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
-
-export default function FortunatePage({
-  searchParams,
-}: {
-  searchParams: { data?: string };
-}) {
+export default function FortunatePage() {
   const router = useRouter();
+  const params = useSearchParams();
+  const [blessing, setBlessing] = useState(() => null);
 
-  let blessing: string;
+  useEffect(() => {
+    const dataParam = params.get("data");
 
-  if (searchParams?.data) {
-    try {
-      const decoded = JSON.parse(atob(decodeURIComponent(searchParams.data)));
-      blessing = decoded.blessing || getRandomBlessing();
-    } catch {
-      blessing = getRandomBlessing();
-    }
-  } else {
-    blessing = getRandomBlessing();
-  }
+    if (!dataParam) return;
 
+    Promise.resolve().then(() => {
+      try {
+        const decodedString = decodeURIComponent(dataParam);
+
+        let parsed;
+        try {
+          parsed = JSON.parse(decodedString);
+        } catch {
+          const base64Decoded = atob(dataParam);
+          parsed = JSON.parse(base64Decoded);
+        }
+
+        if (parsed?.blessing) {
+          setBlessing(parsed.blessing);
+        }
+      } catch (err) {
+        console.error("Error decoding shared data:", err);
+      }
+    });
+  }, [params]);
+
+  if (!blessing) return null;
   return (
     <Suspense
       fallback={<p className="text-white text-lg">Loading fortune...</p>}

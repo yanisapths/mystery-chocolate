@@ -1,29 +1,35 @@
 "use client";
-import { ChocolateCard, ChocolateReveal } from "@/src/components/ChocolateCard";
+import { ChocolateCard } from "@/src/components/ChocolateCard";
 import { Button } from "@/src/components/ui/button";
-import { getRandomChocolate } from "@/src/data/chocolates";
+
 import { Sparkle } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react";
-export default function ChocolatePage({
-  searchParams,
-}: {
-  searchParams?: { data?: string };
-}) {
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+export default function ChocolatePage() {
   const router = useRouter();
-  let chocolate: ChocolateReveal;
+  const params = useSearchParams();
+  const [chocolate, setChocolate] = useState(() => null);
 
-  if (searchParams?.data) {
-    try {
-      chocolate = JSON.parse(decodeURIComponent(searchParams.data)).chocolate;
-    } catch {
-      chocolate = getRandomChocolate();
-    }
-  } else {
-    chocolate = getRandomChocolate();
-  }
+  useEffect(() => {
+    const dataParam = params.get("data");
 
+    Promise.resolve().then(() => {
+      if (dataParam) {
+        try {
+          const decoded = JSON.parse(decodeURIComponent(dataParam));
+          if (decoded?.chocolate) {
+            setChocolate(decoded.chocolate);
+            return;
+          }
+        } catch (err) {
+          console.error("Error decoding shared data:", err);
+        }
+      }
+    });
+  }, [params]);
+
+  if (!chocolate) return null;
   return (
     <Suspense
       fallback={<p className="text-white text-lg">Loading chocolate...</p>}

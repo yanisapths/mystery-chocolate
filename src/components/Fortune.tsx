@@ -15,8 +15,7 @@ interface FortuneProps {
 
 const Fortune = ({ to }: FortuneProps) => {
   const [blessing] = useState(() => getRandomBlessing());
-
-  const encoded = encodeURIComponent(btoa(JSON.stringify({ blessing })));
+  const encoded = encodeURIComponent(JSON.stringify({ blessing }));
   const shareUrl = `${window.location.origin}/fortunate?data=${encoded}`;
 
   return (
