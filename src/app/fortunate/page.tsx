@@ -7,6 +7,16 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 export default function FortunatePage() {
+  return (
+    <Suspense
+      fallback={<p className="text-white text-lg">Loading fortunate...</p>}
+    >
+      <Content />
+    </Suspense>
+  );
+}
+
+const Content = () => {
   const router = useRouter();
   const params = useSearchParams();
   const [blessing, setBlessing] = useState(() => null);
@@ -71,4 +81,4 @@ export default function FortunatePage() {
       </div>
     </Suspense>
   );
-}
+};
