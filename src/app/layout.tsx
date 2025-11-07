@@ -3,6 +3,7 @@ import "./globals.css";
 import { fredoka, imbue, justMe } from "../components/fonts";
 import { Providers } from "./providers";
 import { Toaster } from "../components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Mystery Chocolate",
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${fredoka.variable} ${imbue.variable} ${justMe.variable} antialiased`}
       >
+        <Analytics />
         <Toaster />
         <Providers>{children}</Providers>
       </body>
