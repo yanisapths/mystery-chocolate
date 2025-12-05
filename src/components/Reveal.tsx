@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Actions } from "./Actions";
 import { ChocolateCard } from "./ChocolateCard";
-import html2canvas from "html2canvas";
+
 interface RevealProps {
   to: (state: GameState) => void;
 }

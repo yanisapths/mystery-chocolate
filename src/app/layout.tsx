@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { fredoka, imbue, justMe } from "../components/fonts";
+import {
+  fredoka,
+  imbue,
+  jacquardaBastarda9,
+  justMe,
+} from "../components/fonts";
 import { Providers } from "./providers";
 import { Toaster } from "../components/ui/sonner";
 import { Analytics } from "@vercel/analytics/next";
+import { Credit } from "../components/Credit";
 
 export const metadata: Metadata = {
   title: "Mystery Chocolate",
@@ -27,11 +33,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fredoka.variable} ${imbue.variable} ${justMe.variable} antialiased`}
+        className={`${fredoka.variable} ${imbue.variable} ${justMe.variable} ${jacquardaBastarda9.variable} antialiased`}
       >
         <Analytics />
         <Toaster />
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Credit />
+        </Providers>
       </body>
     </html>
   );
