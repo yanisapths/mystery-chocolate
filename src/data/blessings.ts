@@ -19,6 +19,17 @@ export const blessings: string[] = [
   "Every ending is a new beginning",
   "You are stronger than any challenge",
   "Joy is coming to find you",
+  "Lucky finds me because I am deserving of every blessing",
+  "Miracles happen every single day",
+  "May you find yourself surrounded by moments that remind you how loved you are",
+  "May this season remind you that joy isn't found — it's made",
+  "Wishing you a Christmas that feels like coming home — no matter where you are",
+  "Happy Holidays! I hope all of your Christmas wishes come true",
+  "I hope the magic of Christmas fills every corner of your heart and home with joy — now and always",
+  "Wishing you stillness when the world feels busy and light when it feels dim",
+  "Wishing you warmth that outlasts the winter chill",
+  "May this Christmas plant seeds of healing you'll see bloom in time",
+  "Wishing you the gentleness of friends, the warmth of memories, and the promise of brighter days",
 ];
 
 export const getRandomBlessing = (): string => {
