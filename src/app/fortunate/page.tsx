@@ -6,6 +6,7 @@ import { Sparkle } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
+import { Header } from "@/src/components/Header";
 export default function FortunatePage() {
   return (
     <Suspense
@@ -52,31 +53,34 @@ const Content = () => {
     <Suspense
       fallback={<p className="text-white text-lg">Loading fortune...</p>}
     >
-      <div className="relative h-screen bg-[#F10203] overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12">
-        <div
-          className="absolute z-10 -top-40 h-[400px] w-full bg-size-[auto_400px]"
-          style={{
-            backgroundImage: "url('/images/lace-tag.png')",
-            backgroundRepeat: "repeat-x",
-            backgroundPosition: "top",
-          }}
-        />
-        <Image
-          fill
-          src="/images/snow-bg.png"
-          alt="bg"
-          className="z-5 object-cover"
-        />
+      <div className="relative">
+        <Header />
+        <div className="relative h-screen bg-[#F10203] overflow-hidden font-fredoka flex flex-col items-center justify-center px-6 py-12">
+          <div
+            className="absolute z-10 -top-40 h-[400px] w-full bg-size-[auto_400px]"
+            style={{
+              backgroundImage: "url('/images/lace-tag.png')",
+              backgroundRepeat: "repeat-x",
+              backgroundPosition: "top",
+            }}
+          />
+          <Image
+            fill
+            src="/images/snow-bg.png"
+            alt="bg"
+            className="z-5 object-cover"
+          />
 
-        <FortuneCard blessing={blessing} />
-        <div className="z-50 flex flex-col items-center">
-          <Button
-            onClick={() => router.push("/")}
-            className="text-[#C7FDA8] text-base hover:opacity-70 underline"
-          >
-            <Sparkle />
-            Get your own fortune
-          </Button>
+          <FortuneCard blessing={blessing} />
+          <div className="z-50 flex flex-col items-center">
+            <Button
+              onClick={() => router.push("/")}
+              className="text-[#C7FDA8] text-base hover:opacity-70 underline"
+            >
+              <Sparkle />
+              Get your own fortune
+            </Button>
+          </div>
         </div>
       </div>
     </Suspense>

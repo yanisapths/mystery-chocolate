@@ -9,22 +9,25 @@ interface FortuneCardProps {
 
 export function FortuneCard({ blessing }: FortuneCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const flipInterval = setInterval(() => {
-      const shouldFlip = Math.random() > 0.3;
-      if (shouldFlip) {
-        setIsFlipped((prev) => !prev);
+      if (!isHovering) {
+        const shouldFlip = Math.random() > 0.3;
+        if (shouldFlip) setIsFlipped((prev) => !prev);
       }
     }, Math.random() * 1000 + 2000);
 
     return () => clearInterval(flipInterval);
-  }, []);
+  }, [isHovering]);
 
   return (
     <div className="z-50 min-h-[80vh] m-auto flex flex-col items-center justify-center w-full max-w-sm">
       <div
         className="relative w-full cursor-pointer perspective-1000 animate-sway"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div

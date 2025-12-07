@@ -14,9 +14,13 @@ interface FortuneProps {
 }
 
 const Fortune = ({ to }: FortuneProps) => {
-  const [blessing] = useState(() => getRandomBlessing());
+  const [blessing, setBlessing] = useState(() => getRandomBlessing());
+
   const encoded = encodeURIComponent(JSON.stringify({ blessing }));
   const shareUrl = `${window.location.origin}/fortunate?data=${encoded}`;
+  const getNewFortune = () => {
+    setBlessing(getRandomBlessing());
+  };
 
   return (
     <div
@@ -41,25 +45,29 @@ const Fortune = ({ to }: FortuneProps) => {
 
       <FortuneCard blessing={blessing} />
 
-      <div className="z-50 flex flex-col items-center">
-        <div className="pt-8">
-          <Button
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                const stored = sessionStorage.getItem("selectedChocolate");
-                if (stored) {
-                  to("reveal");
-                } else {
-                  to("picking");
-                }
+      <div className="z-50 flex flex-col items-center -mt-12">
+        <Button
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              const stored = sessionStorage.getItem("selectedChocolate");
+              if (stored) {
+                to("reveal");
+              } else {
+                to("picking");
               }
-            }}
-            className="text-[#C7FDA8] text-base hover:opacity-70"
-          >
-            ← Back to your chocolate
-          </Button>
-        </div>
-        <Actions to={to} shareUrl={shareUrl} />
+            }
+          }}
+          className="text-[#C7FDA8] text-base hover:opacity-70"
+        >
+          ← Back to your chocolate
+        </Button>
+
+        <Actions
+          to={to}
+          shareUrl={shareUrl}
+          newFortune
+          onNewFortune={getNewFortune}
+        />
       </div>
     </div>
   );

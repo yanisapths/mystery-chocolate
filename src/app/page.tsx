@@ -7,8 +7,7 @@ const HomePage = () => {
   const { state, to } = useGameState();
 
   return (
-    <div>
-      {" "}
+    <div className="overflow-hidden h-screen">
       <MiniCredit to={to} />
       <ChocolateGameState state={state} to={to} />
     </div>

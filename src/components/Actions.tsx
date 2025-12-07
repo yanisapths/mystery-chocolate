@@ -1,4 +1,4 @@
-import { Download, RotateCcw, Share2 } from "lucide-react";
+import { Download, RotateCcw, Share2, Sparkle } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { GameState } from "./use-game-state";
@@ -9,9 +9,17 @@ interface ActionsProps {
   to?: (state: GameState) => void;
   shareUrl: string;
   elName?: string;
+  newFortune?: boolean;
+  onNewFortune?: () => void;
 }
 
-export const Actions = ({ to, shareUrl, elName }: ActionsProps) => {
+export const Actions = ({
+  to,
+  shareUrl,
+  elName,
+  newFortune,
+  onNewFortune,
+}: ActionsProps) => {
   const router = useRouter();
 
   const handleRetake = () => {
@@ -52,6 +60,13 @@ export const Actions = ({ to, shareUrl, elName }: ActionsProps) => {
     }
   };
 
+  const handleNewFortune = () => {
+    if (onNewFortune) {
+      onNewFortune();
+      toast("✨ New fortune generated!");
+    }
+  };
+
   return (
     <div className="flex items-center justify-between">
       <Button
@@ -61,6 +76,17 @@ export const Actions = ({ to, shareUrl, elName }: ActionsProps) => {
         <RotateCcw className="w-4 h-4" />
         Retake
       </Button>
+
+      {newFortune ? (
+        <Button
+          onClick={handleNewFortune}
+          className="text-[rgba(255,255,255,0.6)] text-sm underline hover:opacity-70 inline-flex items-center gap-2"
+        >
+          <Sparkle />
+          New fortune
+        </Button>
+      ) : null}
+
       <Button
         onClick={handleShare}
         className="text-[rgba(255,255,255,0.6)] text-sm underline hover:opacity-70 inline-flex items-center gap-2"
@@ -68,7 +94,7 @@ export const Actions = ({ to, shareUrl, elName }: ActionsProps) => {
         <Share2 className="w-4 h-4" />
         Share
       </Button>
-      {elName && (
+      {/* {elName && (
         <Button
           onClick={capture}
           className="text-[rgba(255,255,255,0.6)] text-sm underline hover:opacity-70 inline-flex items-center gap-2"
@@ -76,7 +102,7 @@ export const Actions = ({ to, shareUrl, elName }: ActionsProps) => {
           <Download className="w-4 h-4" />
           Save
         </Button>
-      )}
+      )} */}
     </div>
   );
 };
