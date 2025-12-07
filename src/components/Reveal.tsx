@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Actions } from "./Actions";
 import { ChocolateCard } from "./ChocolateCard";
+import { Credit } from "./Credit";
 
 interface RevealProps {
   to: (state: GameState) => void;
@@ -54,6 +55,7 @@ const Reveal = ({ to }: RevealProps) => {
         </Button>
 
         <Actions to={to} shareUrl={shareUrl} elName="mystery-chocolate" />
+        <Credit />
       </div>
       <div className="absolute -right-[40%] bottom-8 min-w-screen -rotate-45 h-6 bg-white" />
       <div className="absolute -left-[40%] bottom-16 min-w-screen  rotate-55 h-6 bg-[#BC0D0D]" />

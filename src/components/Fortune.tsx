@@ -8,6 +8,7 @@ import { type GameState } from "./use-game-state";
 import { Button } from "./ui/button";
 import { Actions } from "./Actions";
 import { FortuneCard } from "./FortuneCard";
+import { Credit } from "./Credit";
 
 interface FortuneProps {
   to: (state: GameState) => void;
@@ -68,6 +69,7 @@ const Fortune = ({ to }: FortuneProps) => {
           newFortune
           onNewFortune={getNewFortune}
         />
+        <Credit />
       </div>
     </div>
   );

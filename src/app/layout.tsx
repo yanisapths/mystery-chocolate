@@ -37,10 +37,7 @@ export default function RootLayout({
       >
         <Analytics />
         <Toaster />
-        <Providers>
-          {children}
-          <Credit />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

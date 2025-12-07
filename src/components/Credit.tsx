@@ -4,8 +4,8 @@ import { GameState } from "./use-game-state";
 
 export const Credit = () => {
   return (
-    <div className="absolute z-50 bottom-4 w-full m-auto flex flex-col justify-center items-center">
-      <p className="text-[#D9BCFF] font-jacquarda-bastarda-9">
+    <div className="mt-2 h-full w-full m-auto flex flex-col justify-center items-center">
+      <p className="font-[8px] text-[#D9BCFF] font-jacquarda-bastarda-9">
         made with ♡ by{" "}
         <a href="https://yanisapoongthaisong.vercel.app" target="_blank">
           <span className="hover:text-[#ceabfd]">yanisa p.</span>
